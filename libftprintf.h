@@ -6,7 +6,7 @@
 /*   By: mifernan <mifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 17:38:05 by mifernan          #+#    #+#             */
-/*   Updated: 2019/11/27 11:54:57 by mifernan         ###   ########.fr       */
+/*   Updated: 2019/11/27 15:12:21 by mifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int			ft_find_width_prec(char *str, va_list *args, int i);
 int			ft_find_precision(char *str, va_list *args);
 char		*ft_init_strwidth(int width, char *cpy, char *flag);
 char		*ft_init_pustr(char *cpy, int prec);
-void		ft_put_printf(const char *src, int *i);
+int			ft_put_printf(const char *src, int *i);
 int			ft_while_printf(const char *src, char **flags, va_list *args);
 int			ft_isneg(char *cpy);
 char		*ft_find_pos_neg(char *cpy);
