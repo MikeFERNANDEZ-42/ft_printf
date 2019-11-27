@@ -6,7 +6,7 @@
 /*   By: mifernan <mifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 11:48:49 by mifernan          #+#    #+#             */
-/*   Updated: 2019/11/26 18:18:39 by mifernan         ###   ########.fr       */
+/*   Updated: 2019/11/27 17:25:37 by mifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ char	*ft_init_pustr(char *cpy, int prec)
 {
 	if (cpy == NULL)
 	{
-		free(cpy);
+		ft_strdel(&cpy);
 		cpy = ft_strdup("(null)");
 	}
 	if (prec == 0)
 	{
-		free(cpy);
+		ft_strdel(&cpy);
 		cpy = ft_strdup("\0");
 	}
 	else if ((prec > 0) && (prec < ft_strlen(cpy)))
 	{
-		free(cpy);
+		ft_strdel(&cpy);
 		cpy = ft_strndup_free(cpy, prec);
 	}
 	return (cpy);

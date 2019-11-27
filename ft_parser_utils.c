@@ -6,7 +6,7 @@
 /*   By: mifernan <mifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 15:50:32 by mifernan          #+#    #+#             */
-/*   Updated: 2019/11/25 16:08:37 by mifernan         ###   ########.fr       */
+/*   Updated: 2019/11/27 17:25:36 by mifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		ft_find_width(char *str, va_list *args)
 				tab[j++] = str[i++];
 			tab[j] = '\0';
 			value = (ft_atoi(tab));
-			free(tab);
+			ft_strdel(&tab);
 			i--;
 		}
 		i++;
@@ -101,7 +101,7 @@ int		ft_find_width_prec(char *str, va_list *args, int i)
 				tab[j++] = str[i++];
 			tab[j] = '\0';
 			value = (ft_atoi(tab));
-			free(tab);
+			ft_strdel(&tab);
 			i--;
 		}
 		i++;

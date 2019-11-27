@@ -6,32 +6,11 @@
 /*   By: mifernan <mifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:41:01 by mifernan          #+#    #+#             */
-/*   Updated: 2019/11/26 18:09:35 by mifernan         ###   ########.fr       */
+/*   Updated: 2019/11/27 18:31:56 by mifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-int		ft_flags_valid(char *flags)
-{
-	int		i;
-	int		ret;
-	char	*conv;
-
-	if (!flags)
-		return (-1);
-	conv = ft_strdup("csdiuxXp%%");
-	i = 0;
-	ret = -1;
-	while (conv[i])
-	{
-		if (flags[ft_strlen(flags) - 1] == conv[i])
-			ret = 1;
-		i++;
-	}
-	free(conv);
-	return (ret);
-}
 
 void	ft_free_tab(char **tab)
 {
@@ -49,6 +28,26 @@ void	ft_free_tab(char **tab)
 	}
 }
 
+int		ft_end_conv(char c)
+{
+	char	*conv;
+	int		i;
+
+	conv = ft_strdup("-0123456789.*");
+	i = 0;
+	while (conv[i])
+	{
+		if (c == conv[i])
+		{
+			ft_strdel(&conv);
+			return (1);
+		}
+		i++;
+	}
+	ft_strdel(&conv);
+	return (0);
+}
+
 int		ft_is_conv(char c)
 {
 	char	*conv;
@@ -60,41 +59,41 @@ int		ft_is_conv(char c)
 	{
 		if (c == conv[i])
 		{
-			free(conv);
+			ft_strdel(&conv);
 			return (1);
 		}
 		i++;
 	}
-	free(conv);
+	ft_strdel(&conv);
 	return (0);
 }
 
 char	*ft_find_flags(const char *str)
 {
 	int		i;
-	int		j;
 	char	*cpy;
 
-	cpy = ft_calloc((strlen(str) * 2), sizeof(char));
+	cpy = NULL;
 	i = 0;
-	j = 0;
 	while (str[i])
 	{
 		if ((i != 0) && (str[i - 1] == '%'))
 		{
-			cpy[j++] = str[i - 1];
+			cpy = ft_strjoin_free(cpy, ft_convert_char(str[i - 1]), 3);
 			if (str[i] == '%')
-				cpy[j++] = str[i++];
+				cpy = ft_strjoin_free(cpy, ft_convert_char(str[i++]), 3);
 			else
 			{
-				while ((ft_is_conv(str[i]) == 1) && str[i])
-					cpy[j++] = str[i++];
+				while ((ft_end_conv(str[i]) == 1) && str[i])
+					cpy = ft_strjoin_free(cpy, ft_convert_char(str[i++]), 3);
+				if (ft_is_conv(str[i]) == 1)
+					cpy = ft_strjoin_free(cpy, ft_convert_char(str[i++]), 3);
 			}
-			cpy[j++] = ',';
+			cpy = ft_strjoin_free(cpy, ft_convert_char(','), 3);
 		}
 		i++;
 	}
-	cpy[j] = '\0';
+	cpy = ft_strjoin_free(cpy, ft_convert_char('\0'), 3);
 	return (cpy);
 }
 

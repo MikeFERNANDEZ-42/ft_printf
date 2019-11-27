@@ -6,11 +6,34 @@
 /*   By: mifernan <mifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 15:31:32 by mifernan          #+#    #+#             */
-/*   Updated: 2019/11/27 15:13:33 by mifernan         ###   ########.fr       */
+/*   Updated: 2019/11/27 18:32:03 by mifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+int		ft_flags_valid(char *flags)
+{
+	int		i;
+	int		ret;
+	char	*conv;
+
+	if (!flags)
+		return (-1);
+	if (flags[0] == '%' && ft_is_conv(flags[1]) != 1)
+		return (0);
+	conv = ft_strdup("csdiuxXp%%");
+	i = 0;
+	ret = -1;
+	while (conv[i])
+	{
+		if (flags[ft_strlen(flags) - 1] == conv[i])
+			ret = 1;
+		i++;
+	}
+	ft_strdel(&conv);
+	return (ret);
+}
 
 int		ft_len_src(const char *src)
 {

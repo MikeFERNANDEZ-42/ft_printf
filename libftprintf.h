@@ -6,7 +6,7 @@
 /*   By: mifernan <mifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 17:38:05 by mifernan          #+#    #+#             */
-/*   Updated: 2019/11/27 15:12:21 by mifernan         ###   ########.fr       */
+/*   Updated: 2019/11/27 18:32:16 by mifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <fcntl.h>
 # include <stdarg.h>
 # include "libft/libft.h"
+# include <stdio.h>
 
 int			ft_numlen(long int nb, int base);
 long int	ft_convert_ld(long int nb);
@@ -61,4 +62,5 @@ char		*ft_convert_char(int c);
 char		*ft_init_charwidth(int width, char *flag);
 int			ft_putchar_c(char *flags, va_list *args);
 int			ft_len_src(const char *src);
+
 #endif
