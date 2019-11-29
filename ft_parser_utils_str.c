@@ -6,7 +6,7 @@
 /*   By: mifernan <mifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 11:48:49 by mifernan          #+#    #+#             */
-/*   Updated: 2019/11/27 17:25:37 by mifernan         ###   ########.fr       */
+/*   Updated: 2019/11/28 14:50:25 by mifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ char	*ft_init_strwidth(int width, char *cpy, char *flag)
 	int		len;
 
 	str = NULL;
-	if (width < 0 && (width != -1))
+	if (width > 0 && (width <= ft_strlen(cpy)))
+		return (NULL);
+	if (width < 0)
 	{
 		width *= -1;
 		*flag = '-';
 	}
-	if (width == -1 || (width <= ft_strlen(cpy)))
-		return (NULL);
 	len = (width - ft_strlen(cpy));
 	if (width > ft_strlen(cpy))
 	{
@@ -41,6 +41,8 @@ char	*ft_init_strwidth(int width, char *cpy, char *flag)
 
 char	*ft_init_pustr(char *cpy, int prec)
 {
+	char *tmp;
+
 	if (cpy == NULL)
 	{
 		ft_strdel(&cpy);
@@ -53,8 +55,10 @@ char	*ft_init_pustr(char *cpy, int prec)
 	}
 	else if ((prec > 0) && (prec < ft_strlen(cpy)))
 	{
+		tmp = ft_strdup(cpy);
 		ft_strdel(&cpy);
-		cpy = ft_strndup_free(cpy, prec);
+		cpy = ft_strndup_free(tmp, prec);
+		ft_strdel(&tmp);
 	}
 	return (cpy);
 }

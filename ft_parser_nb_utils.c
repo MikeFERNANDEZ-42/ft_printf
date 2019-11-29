@@ -6,7 +6,7 @@
 /*   By: mifernan <mifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 15:47:50 by mifernan          #+#    #+#             */
-/*   Updated: 2019/11/27 17:25:40 by mifernan         ###   ########.fr       */
+/*   Updated: 2019/11/29 10:42:34 by mifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_init_dprec(int prec, char *cpy, char *flag)
 	int		len;
 
 	str = NULL;
-	if ((prec == -1) || (prec < ft_strlen(cpy)))
+	if ((prec > 0 && (prec < ft_strlen(cpy))) || ((prec < 0)))
 		return (NULL);
 	if ((prec == 0) && (*flag == '0'))
 		*flag = '\0';
@@ -88,7 +88,7 @@ char	*ft_init_dwidth(int width, char *cpy, char *flag, int prec)
 	int		len;
 
 	str = NULL;
-	if (width < 0 && (width != -1))
+	if (width < 0)
 	{
 		width *= -1;
 		*flag = '-';

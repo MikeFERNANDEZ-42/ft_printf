@@ -6,7 +6,7 @@
 /*   By: mifernan <mifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 15:50:32 by mifernan          #+#    #+#             */
-/*   Updated: 2019/11/27 17:25:36 by mifernan         ###   ########.fr       */
+/*   Updated: 2019/11/28 15:42:16 by mifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	ft_find_flag(char *str)
 	{
 		if (str[i] == '-')
 			min = 1;
-		if ((str[i] == '0') && (ft_isdigit(str[i - 1]) == 0))
+		if ((str[i] == '0') && (ft_is_conv(str[i - 1]) == 0))
 			zero = 1;
 		i++;
 	}
