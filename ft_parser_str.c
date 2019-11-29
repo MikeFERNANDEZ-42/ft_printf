@@ -6,7 +6,7 @@
 /*   By: mifernan <mifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:26:56 by mifernan          #+#    #+#             */
-/*   Updated: 2019/11/29 10:39:49 by mifernan         ###   ########.fr       */
+/*   Updated: 2019/11/29 16:27:23 by mifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,24 @@ char	*ft_init_charwidth(int width, char *flag)
 	return (str);
 }
 
+int		ft_put_backzero(char *str, int width, char flag)
+{
+	if (flag == '-' && (str != NULL))
+	{
+		ft_putchar_fd('\0', 1);
+		ft_putstr_fd(str, 1);
+	}
+	else if (str != NULL)
+	{
+		ft_putstr_fd(str, 1);
+		ft_putchar_fd('\0', 1);
+	}
+	else
+		ft_putchar_fd('\0', 1);
+	ft_strdel(&str);
+	return (width);
+}
+
 int		ft_putchar_c(char *flags, va_list *args)
 {
 	char	*str;
@@ -88,6 +106,8 @@ int		ft_putchar_c(char *flags, va_list *args)
 	cpy = va_arg(*args, int);
 	flag = ft_find_flag(flags);
 	str = ft_init_charwidth(width, &flag);
+	if (cpy == '\0')
+		return (ft_put_backzero(str, width, flag));
 	if (flag == '-' && (str != NULL))
 		str = ft_strjoin_free(ft_convert_char(cpy), str, 3);
 	else if (str != NULL)
@@ -95,7 +115,6 @@ int		ft_putchar_c(char *flags, va_list *args)
 	else
 		str = ft_convert_char(cpy);
 	ft_putstr_fd(str, 1);
-	width = ft_strlen(str);
 	if (cpy == '\0')
 		width++;
 	ft_strdel(&str);
