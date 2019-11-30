@@ -6,7 +6,7 @@
 /*   By: mifernan <mifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:26:56 by mifernan          #+#    #+#             */
-/*   Updated: 2019/11/29 16:27:23 by mifernan         ###   ########.fr       */
+/*   Updated: 2019/11/30 09:24:00 by mifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int		ft_put_backzero(char *str, int width, char flag)
 	}
 	else
 		ft_putchar_fd('\0', 1);
+	width = ft_strlen(str);
+	width++;
 	ft_strdel(&str);
 	return (width);
 }
@@ -115,8 +117,7 @@ int		ft_putchar_c(char *flags, va_list *args)
 	else
 		str = ft_convert_char(cpy);
 	ft_putstr_fd(str, 1);
-	if (cpy == '\0')
-		width++;
+	width = ft_strlen(str);
 	ft_strdel(&str);
 	return (width);
 }

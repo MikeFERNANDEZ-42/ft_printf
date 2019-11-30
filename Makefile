@@ -6,7 +6,7 @@
 #    By: mifernan <mifernan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/26 18:12:51 by mifernan          #+#    #+#              #
-#    Updated: 2019/11/26 12:07:32 by mifernan         ###   ########.fr        #
+#    Updated: 2019/11/30 09:11:22 by mifernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ OBJS_LFT = $(SRC_LFT:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(OBJS_LIBFT)
+$(NAME): $(OBJS) $(OBJS_LIBFT) libftprintf.h
 	make -C ./libft
 	ar rc $(NAME) $(OBJS) $(OBJS_LFT)
 	ranlib $(NAME)
